@@ -28,6 +28,6 @@ class ExercisesController < ApplicationController
     #   * 取得したCustomerのインスタンスにfoods_price_sumと呼びかけると合計金額を返すこと
     @customer = Customer.joins(orders: :foods)
       .select('customers.*, SUM(foods.price) AS foods_price_sum')
-      .order('foods_price_sum DESC').first
+      .group('customers.id').order('foods_price_sum DESC').first
   end
 end
